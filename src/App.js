@@ -1,69 +1,121 @@
 
-import './App.css';
-import { useState } from 'react';
+import "./App.css";
+import { useState } from "react";
 
 function App() {
-const  [todo, setTodo] = useState([])
-const [inputValue, setInputValue] = useState('')
-const [editIndex, setEditIndex] = useState(null)
-const [categories, setCatogories] = useState(false)
+  const [todo, setTodo] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [editIndex, setEditIndex] = useState(null);
+  const [filter, setFilter] = useState("");
+  const [category, setCategory] = useState('')
 
-const input = (e) =>{
-  setInputValue(e.target.value)
-}
+const input = (e) => {
+  setInputValue(e.target.value);
 
+};
 
-const newInput = () =>{
-  if(inputValue){
-    if(editIndex !== null){
-      const newTodo = [...todo]
-      newTodo[editIndex] = inputValue
-      setTodo(newTodo)
-      setEditIndex(null)
-    } else{
-      setTodo([...todo, inputValue])
-    
+const newInput = () => {
+  if (inputValue && filter) {
+
+    if (editIndex !== null) {
+      const newTodo = [...todo];
+      newTodo[editIndex] = { text: inputValue, category: filter };
+      setTodo(newTodo);
+      setEditIndex(null);
+    } else {
+      setTodo([...todo, { text: inputValue, category: filter }]);
     }
-    setInputValue('')
+    setInputValue("");
+  
+    
   }
-}
-
-const editButton = (index) =>{
-  setInputValue(todo[index])
-  setEditIndex(index)
-}
-
-const deleteInput = (index) => {
-  const newTodo = todo.filter((item, i) => i !== index);
-  setTodo(newTodo);
+  else{
+    setCategory('Click a category')
+  }
 };
 
 
-return(
-    <div className='todo'>
- <input 
- type='text'
- onChange={input}
-  value={inputValue}/>
+  const deleteInput = (index) => {
+    const newTodo = todo.filter((item, i) => i !== index);
+    setTodo(newTodo);
+  };
 
- <button onClick={newInput}>Add</button>
+  const editButton = (index) => {
+    setInputValue(todo[index].text);
+    setEditIndex(index);
+  };
 
- 
- <ul >
- {todo.map((todos, index) => {
   return (
-    <li className="lists" key={index}>
-      {todos}
-      <button key={index} onClick={() => deleteInput(index)}>
-        Delete
-      </button>
-      <button key={index} onClick={() =>editButton(index)}>Edit</button>
-    </li>
-  );
-})}
+    <div className="todo">
+      <div>
+      <input type="text" onChange={input} value={inputValue} />
+    
+      <button onClick={newInput}>Add</button>
+      </div>
+    
+      <div className="categories">
+        <div
+         
+          className="category"
+          onClick={() => 
+            setFilter("Work", 
+            setCategory('Work'),
+            setInputValue('')) }
+        >
+          Work
+        </div>
+        <div
+         
+          className="category"
+          onClick={() => 
+            setFilter("Health" , 
+          setCategory('Health'), 
+          setInputValue(''))}
+        >
+          Health
+        </div>
+        <div
+         
+          className="category"
+          onClick={() => 
+            setFilter("Finance" , 
+            setCategory('Finance'), 
+            setInputValue(''))}
+        >
+          Finance
+        </div>
+        <div
+         
+          className="category"
+          onClick={() => 
+            setFilter("Home" , 
+            setCategory('Home'), 
+          setInputValue(''))}
+        >
+          Home
+        </div>
+      </div>
+      <div className="display-category">
+        {category}
+      </div>
 
- </ul>
-
+      <ul>
+        {todo
+          .filter((item) => !filter || item.category === filter)
+          .map((todos, index) => {
+            return (
+              <li className="lists" key={index}>
+                {todos.text}
+                <button key={index} onClick={() => deleteInput(index)}>
+                  Delete
+                </button>
+                <button key={index} onClick={() => editButton(index)}>
+                  Edit
+                </button>
+              </li>
+            );
+          })}
+      </ul>
     </div>
   );
 }
