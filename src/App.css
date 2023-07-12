@@ -1,48 +1,148 @@
-body {
-  background-color: #1c1c1c;
+* {
+  box-sizing: border-box;
 }
-
+body {
+  background-color: #e2e1e1;
+  
+}
+.add-task{
+  font-family: "Courier New", Courier, monospace;
+}
 .todo {
   color: white;
   font-family: "Courier New", Courier, monospace;
-  max-width: 400px;
+  max-width: 50%;
   margin: 0 auto;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 input[type="text"] {
-  width: 70%;
+  width: 320px;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   border: none;
   border-bottom: 2px solid white;
+  height: 40px;
+  border-radius: 4px 0px 0px 4px;
 }
 
 button {
-  background-color: #4CAF50; /* Green */
+  background-color: #1c1d1c; /* Green */
   border: none;
   color: white;
-  padding: 15px 32px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 16px;
 }
 
 .categories {
     display:flex;
-    justify-content:center
+    justify-content:center;
+    gap: 15px;
+    padding-top: 20px;
 }
 
 .category {
     margin-right:10px;
     cursor: pointer;
+padding: 11px;
+color: white;
+background: #161816;
+border-radius: 4px;
+display: inline-block;
+transition: width 0.5s;
+height: 40px;
 }
 
-.display-category{
-    text-align:center
+
+.active {
+    width: 190px;
+    background: red;
+    font-size: 30px;
+    height: 60px;
 }
 
+
+
+.input-div{
+  display: flex;
+
+
+align-items: center;
+padding-top: 20px;
+
+}
+.input-div button{
+  height: 40px;
+  border-radius: 0px 4px 4px 0px;
+  cursor: pointer;
+}
+:hover.add-task{
+  background-color: #767c76;
+}
+.category-list {
+  display: flex;
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.display-category.show {
+  animation: fade 1s;
+  font-weight: 600;
+}
+.clicked-category{
+  font-size: 20px;
+  padding-top: 2px;
+  font-weight: 800;
+  
+}
+.clicked-category p{
+  border-bottom: black solid 1px;
+}
+ol{
+  color: white;
+  width: 400px;
+  
+}
+.ol{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
 .lists{
-    list-style:none
+  
+  background-color: #767c76;
+  padding: 10px;
+  
+  flex-direction: row;
+  justify-content: space-between;
+}
+.delete-button{
+  width: 60px;
+  
+}
+
+span{
+width: 250px;
+}
+.span-button{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  word-wrap: break-word;
+}
+.icon{
+  display: flex;
+  cursor: pointer;
+}
+::marker{
+  color: black;
+  font-weight: 800;
 }

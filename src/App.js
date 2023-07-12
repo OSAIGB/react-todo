@@ -1,6 +1,8 @@
 
 import "./App.css";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPenAlt } from "@fortawesome/free-solid-svg-icons";
 
 function App() {
   const [todo, setTodo] = useState([]);
@@ -8,7 +10,12 @@ function App() {
   const [editIndex, setEditIndex] = useState(null);
   const [filter, setFilter] = useState("");
   const [category, setCategory] = useState('')
+  const [active, setActive] = useState('')
 
+  const filterCategory = (filter) =>{
+setFilter(filter)
+setActive(filter)
+  }
 const input = (e) => {
   setInputValue(e.target.value);
 
@@ -26,12 +33,15 @@ const newInput = () => {
       setTodo([...todo, { text: inputValue, category: filter }]);
     }
     setInputValue("");
-  
-    
   }
-  else{
-    setCategory('Click a category')
-  }
+  else {
+    setCategory("Please insert a text or select a Category.");
+    document.querySelector(".display-category").classList.add("show");
+    setTimeout(() => {
+      setCategory("");
+      document.querySelector(".display-category").classList.remove("show");
+    }, 3000);
+  }  
 };
 
 
@@ -47,28 +57,27 @@ const newInput = () => {
 
   return (
     <div className="todo">
-      <div>
+      <div className="input-div">
       <input type="text" onChange={input} value={inputValue} />
-    
-      <button onClick={newInput}>Add</button>
+      <button onClick={newInput} className="add-task">Add</button>
       </div>
-    
+    <div className="category-list"></div>
       <div className="categories">
         <div
          
-          className="category"
+          className={`category ${active === "Work" ? "active" : ''}`}
           onClick={() => 
-            setFilter("Work", 
+            filterCategory("Work", 
             setCategory('Work'),
             setInputValue('')) }
         >
-          Work
+        <span>Work</span>
         </div>
         <div
          
-          className="category"
+          className={`category ${active === "Health" ? "active" : ''}`}
           onClick={() => 
-            setFilter("Health" , 
+            filterCategory("Health" , 
           setCategory('Health'), 
           setInputValue(''))}
         >
@@ -76,9 +85,9 @@ const newInput = () => {
         </div>
         <div
          
-          className="category"
+          className={`category ${active === "Finance" ? "active" : ''}`}
           onClick={() => 
-            setFilter("Finance" , 
+            filterCategory("Finance" , 
             setCategory('Finance'), 
             setInputValue(''))}
         >
@@ -86,9 +95,9 @@ const newInput = () => {
         </div>
         <div
          
-          className="category"
+          className={`category ${active === "Home" ? "active" : ''}`}
           onClick={() => 
-            setFilter("Home" , 
+            filterCategory("Home" , 
             setCategory('Home'), 
           setInputValue(''))}
         >
@@ -96,26 +105,30 @@ const newInput = () => {
         </div>
       </div>
       <div className="display-category">
-        {category}
-      </div>
-
-      <ul>
+      <div className="clicked-category">
+       <p>
+        {category}</p> 
+        </div>  
+      <ol className="ol">
         {todo
           .filter((item) => !filter || item.category === filter)
           .map((todos, index) => {
             return (
               <li className="lists" key={index}>
-                {todos.text}
-                <button key={index} onClick={() => deleteInput(index)}>
-                  Delete
-                </button>
-                <button key={index} onClick={() => editButton(index)}>
-                  Edit
-                </button>
+                <div className="span-button">
+                   <span>{todos.text}</span>    
+                   <div className="icon"> 
+                    <FontAwesomeIcon icon={faTrash} className="delete-button" key={index} onClick={() => deleteInput(index)}/>  
+              
+                <FontAwesomeIcon icon={faPenAlt} className="edit-button" key={index}onClick={() => editButton(index)} /></div> 
+             
+                </div>
+              
               </li>
             );
           })}
-      </ul>
+      </ol>
+      </div>
     </div>
   );
 }
