@@ -81,7 +81,7 @@ const newInput = () => {
           setCategory('Health'), 
           setInputValue(''))}
         >
-          Health
+          <span>Health</span>
         </div>
         <div
          
@@ -91,7 +91,7 @@ const newInput = () => {
             setCategory('Finance'), 
             setInputValue(''))}
         >
-          Finance
+          <span>Finance</span>
         </div>
         <div
          
@@ -101,7 +101,7 @@ const newInput = () => {
             setCategory('Home'), 
           setInputValue(''))}
         >
-          Home
+          <span>Home</span>
         </div>
       </div>
       <div className="display-category">

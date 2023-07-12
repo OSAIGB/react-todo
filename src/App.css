@@ -58,6 +58,10 @@ transition: width 0.5s;
 height: 40px;
 }
 
+.category span {
+  display: inline-block;
+  width: 80px;
+}
 
 .active {
     width: 190px;
@@ -146,3 +150,56 @@ width: 250px;
   color: black;
   font-weight: 800;
 }
+@media  screen and (max-width: 600px) {
+  input[type="text"]{
+    width: 100%;
+  }
+  .category{
+    margin-right: 1px;
+    font-size: 13px;
+  }
+  .clicked-category p {
+    border-bottom: black solid 1px;
+    font-size: 13px;
+}
+.display-category{
+  font-size: 10px;
+  width: 300px;
+}
+.lists{
+  width: 260px ;
+}
+ol {
+  color: white;
+  width: 301px;
+}
+.categories{
+padding-top: 2px;
+gap: 7px;
+}
+.active{
+  width: 90px;
+  font-size: 16px;
+}
+span{
+  width: 170px;
+  font-size: 20px;
+}@keyframes slide {
+  from { width: 50px; }
+  to { width: 90px; }
+}
+.category {
+  transition: width 0.5s;
+}
+
+.category span {
+    display: inline-block;
+    width: 50px;
+}
+
+.active {
+  animation: slide 0.5s forwards;
+}
+}
+
+
