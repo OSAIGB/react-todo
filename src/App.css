@@ -3,7 +3,6 @@
 }
 body {
   background-color: #e2e1e1;
-  
 }
 .add-task{
   font-family: "Courier New", Courier, monospace;
@@ -62,23 +61,15 @@ height: 40px;
   display: inline-block;
   width: 80px;
 }
-
 .active {
     width: 190px;
     background: red;
     font-size: 30px;
     height: 60px;
 }
-
-
-
 .input-div{
   display: flex;
-
-
 align-items: center;
-padding-top: 20px;
-
 }
 .input-div button{
   height: 40px;
@@ -95,7 +86,6 @@ padding-top: 20px;
   from { opacity: 0; }
   to { opacity: 1; }
 }
-
 .display-category.show {
   animation: fade 1s;
   font-weight: 600;
@@ -104,7 +94,6 @@ padding-top: 20px;
   font-size: 20px;
   padding-top: 2px;
   font-weight: 800;
-  
 }
 .clicked-category p{
   border-bottom: black solid 1px;
@@ -130,12 +119,12 @@ ol{
 }
 .delete-button{
   width: 60px;
-  
 }
 
 span{
 width: 250px;
 }
+
 .span-button{
   display: flex;
   flex-direction: row;
@@ -145,6 +134,7 @@ width: 250px;
 .icon{
   display: flex;
   cursor: pointer;
+  font-size: 20px;
 }
 ::marker{
   color: black;
@@ -177,6 +167,16 @@ ol {
 padding-top: 2px;
 gap: 7px;
 }
+.delete-button{
+  width: 40px;
+}
+
+.edit-button{
+  width: 40px;
+}
+.icon{
+  font-size: 20px;
+}
 .active{
   width: 90px;
   font-size: 16px;
@@ -195,6 +195,7 @@ span{
 .category span {
     display: inline-block;
     width: 50px;
+    font-size: 14px;
 }
 
 .active {
